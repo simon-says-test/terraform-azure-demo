@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg1" {
 
 data "azurerm_key_vault_secret" "rgName" {
   name         = "resource-group-name"
-  key_vault_id = data.azurerm_key_vault.existing.id
+  key_vault_id = "https://kv-demo-secrets.vault.azure.net/"
 }
 
 resource "azurerm_resource_group" "rg2" {
