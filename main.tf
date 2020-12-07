@@ -11,12 +11,12 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "rg-1" {
   name     = "rg-demo-can-delete"
   location = "uksouth"
 }
 
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "rg-2" {
   name     = "${data.azurerm_key_vault_secret.resource-group-name.value}"
   location = "uksouth"
 }
