@@ -21,10 +21,6 @@ data "azurerm_key_vault" "keyVault" {
     resource_group_name = "rq-qiw-terraform"
 }
 
-output "vault_uri" {
-  value = data.azurerm_key_vault.keyVault.vault_uri
-}
-
 data "azurerm_key_vault_secret" "rgName" {
   name         = "resource-group-name"
   key_vault_id = data.azurerm_key_vault.keyVault.id
