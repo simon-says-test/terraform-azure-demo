@@ -16,17 +16,17 @@ resource "azurerm_resource_group" "rg1" {
   location = "uksouth"
 }
 
+data "azurerm_key_vault" "keyVault" {
+    name = "kv-demo-secrets"
+    resource_group_name = "rq-qiw-terraform"
+}
+
 data "azurerm_key_vault_secret" "rgName" {
   name         = "resource-group-name"
-  key_vault_id = "https://kv-demo-secrets.vault.azure.net/"
+  key_vault_id = ata.azurerm_key_vault.keyVault.id
 }
 
 resource "azurerm_resource_group" "rg2" {
-  name     = "${data.azurerm_key_vault_secret.rgName.value}"
+  name     = data.azurerm_key_vault_secret.rgName.value
   location = "uksouth"
 }
-
-# data "azurerm_key_vault" "key-vault" {
-#     name = "kv-demo-secrets"
-#     resource_group_name = "rq-qiw-terraform"
-# }
