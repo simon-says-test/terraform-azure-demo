@@ -22,12 +22,12 @@ data "azurerm_key_vault" "keyVault" {
 }
 
 output "vault_uri" {
-  value = data.azurerm_key_vault.keys.vault_uri
+  value = data.azurerm_key_vault.keyVault.vault_uri
 }
 
 data "azurerm_key_vault_secret" "rgName" {
   name         = "resource-group-name"
-  key_vault_id = ata.azurerm_key_vault.keys.id
+  key_vault_id = data.azurerm_key_vault.keys.id
 }
 
 resource "azurerm_resource_group" "rg2" {
