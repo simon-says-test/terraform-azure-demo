@@ -12,6 +12,16 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "myTFResourceGroup"
-  location = "westus2"
+  name     = "rg-demo-can-delete"
+  location = "uksouth"
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${data.azurerm_key_vault_secret.resource-group-name.value}"
+  location = "uksouth"
+}
+
+data "azurerm_key_vault_secret" "resource-group-name" {
+    name = "labuser"
+    vault_uri = "https://kv-demo-secrets.vault.azure.net/"
 }
